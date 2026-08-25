@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 const siteId = "site_demo_8fk2";
+const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
 const points = [36, 48, 42, 69, 55, 77, 64, 91, 82, 109, 96, 124, 118, 141];
 const installSnippet = `<script defer src="https://cdn.signalist.dev/tracker.js"
   data-site-id="${siteId}"></script>`;
@@ -15,7 +16,7 @@ export default function Dashboard() {
   const [active, setActive] = useState("Overview");
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/v1/sites/${siteId}/overview`).then(response => response.ok && response.json())
+    fetch(`${apiUrl}/api/v1/sites/${siteId}/overview`).then(response => response.ok && response.json())
       .then(data => data && (data.pageviews || data.customEvents) && setOverview(data)).catch(() => {});
   }, []);
 
