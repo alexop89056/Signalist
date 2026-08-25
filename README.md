@@ -30,3 +30,13 @@ cd ../frontend && npm install && npm run dev
 ```
 
 The API uses H2 in-memory storage locally. Configure `SPRING_DATASOURCE_URL`, username, and password for PostgreSQL in deployment.
+
+## Run with Docker
+
+```bash
+cd deploy
+cp .env.example .env
+docker compose up --build
+```
+
+This starts PostgreSQL, the Spring Boot API on `http://localhost:8080`, and the dashboard on `http://localhost:3000`.
